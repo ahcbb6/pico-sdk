@@ -40,7 +40,7 @@ function(pico_generate_pio_header TARGET PIO)
 
     add_custom_command(OUTPUT ${HEADER}
             DEPENDS ${PIO}
-            COMMAND Pioasm -o ${OUTPUT_FORMAT} ${PIO} ${HEADER}
+            COMMAND ${Pioasm_EXECUTABLE} -o ${OUTPUT_FORMAT} ${PIO} ${HEADER}
             VERBATIM)
     add_dependencies(${TARGET} ${HEADER_GEN_TARGET})
     get_target_property(target_type ${TARGET} TYPE)
@@ -71,7 +71,7 @@ function(pico_add_uf2_output TARGET)
     if (ELF2UF2_FOUND)
       message("ELF: ${ELF2UF2}")
         add_custom_command(TARGET ${TARGET} POST_BUILD
-            COMMAND ELF2UF2 $<TARGET_FILE:${TARGET}> ${output_path}$<IF:$<BOOL:$<TARGET_PROPERTY:${TARGET},OUTPUT_NAME>>,$<TARGET_PROPERTY:${TARGET},OUTPUT_NAME>,$<TARGET_PROPERTY:${TARGET},NAME>>.uf2
+            COMMAND ${ELF2UF2_EXECUTABLE} $<TARGET_FILE:${TARGET}> ${output_path}$<IF:$<BOOL:$<TARGET_PROPERTY:${TARGET},OUTPUT_NAME>>,$<TARGET_PROPERTY:${TARGET},OUTPUT_NAME>,$<TARGET_PROPERTY:${TARGET},NAME>>.uf2
             VERBATIM)
     endif()
 endfunction()
