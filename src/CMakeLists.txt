@@ -57,7 +57,10 @@ endfunction()
 
 # add map file generation for the given target
 function(pico_add_map_output TARGET)
-    get_target_property(target_type ${TARGET} TYPE)
+  get_target_property(target_type ${TARGET} TYPE)
+  message("TARGET: ${TARGET}")
+  message("TYPE: ${TYPE}")
+  message("TT: ${target_type}")
     if ("EXECUTABLE" STREQUAL "${target_type}")
         target_link_options(${TARGET} PRIVATE "LINKER:-Map=$<IF:$<BOOL:$<TARGET_PROPERTY:OUTPUT_NAME>>,$<TARGET_PROPERTY:OUTPUT_NAME>,$<TARGET_PROPERTY:NAME>>${CMAKE_EXECUTABLE_SUFFIX}.map")
     else ()

@@ -9,6 +9,8 @@
 #     ELF2UF2
 #
 
+message("Checking for ELF2UF2")
+message("ELF2UF2_BUILD_TARGET: ${ELF2UF2_BUILD_TARGET}")
 if (NOT ELF2UF2_FOUND)
     # todo we would like to use pckgconfig to look for it first
     # see https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/
@@ -21,7 +23,9 @@ if (NOT ELF2UF2_FOUND)
     set(ELF2UF2_BUILD_TARGET ELF2UF2Build)
     set(ELF2UF2_TARGET ELF2UF2)
 
+    message("ELF2UF2_BUILD_TARGET ${ELF2UF2_BUILD_TARGET}")
     if (NOT TARGET ${ELF2UF2_BUILD_TARGET})
+      message("ELF2UF2 will need to be built")
         pico_message_debug("ELF2UF2 will need to be built")
         ExternalProject_Add(${ELF2UF2_BUILD_TARGET}
                 PREFIX elf2uf2
@@ -33,6 +37,8 @@ if (NOT ELF2UF2_FOUND)
                 )
     endif()
 
+    message("DIR: ${ELF2UF2_BINARY_DIR}")
+    message("EXE: ${ELF2UF2_EXECUTABLE}")
     set(ELF2UF2_EXECUTABLE ${ELF2UF2_BINARY_DIR}/elf2uf2)
     if(NOT TARGET ${ELF2UF2_TARGET})
         add_executable(${ELF2UF2_TARGET} IMPORTED)

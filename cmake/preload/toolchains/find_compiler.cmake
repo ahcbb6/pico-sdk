@@ -4,10 +4,12 @@ if (NOT "${PICO_TOOLCHAIN_PATH}" STREQUAL "")
     set(ENV{PICO_TOOLCHAIN_PATH} "${PICO_TOOLCHAIN_PATH}")
 endif ()
 
+
 # Find the compiler executable and store its path in a cache entry ${compiler_path}.
 # If not found, issue a fatal message and stop processing. PICO_TOOLCHAIN_PATH can be provided from
 # commandline as additional search path.
 function(pico_find_compiler compiler_path compiler_exe)
+  message("DEBUG: ${compiler_exe}")
     # Search user provided path first.
     find_program(
             ${compiler_path} ${compiler_exe}
@@ -15,7 +17,6 @@ function(pico_find_compiler compiler_path compiler_exe)
             PATH_SUFFIXES bin
             NO_DEFAULT_PATH
     )
-
     # If not then search system paths.
     if ("${${compiler_path}}" STREQUAL "${compiler_path}-NOTFOUND")
         if (DEFINED ENV{PICO_TOOLCHAIN_PATH})

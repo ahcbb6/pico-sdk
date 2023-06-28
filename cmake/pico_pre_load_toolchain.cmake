@@ -18,6 +18,7 @@ endif()
 
 # PICO_CMAKE_CONFIG: PICO_COMPILER, Optionally specifies a different compiler (other than pico_arm_gcc.cmake) - this is not yet fully supported, default=none, group=build
 # If PICO_COMPILER is specified, set toolchain file to ${PICO_COMPILER}.cmake.
+message("PICO compiler is ${PICO_COMPILER}")
 if (DEFINED PICO_COMPILER)
     if (DEFINED CMAKE_TOOLCHAIN_FILE)
         get_filename_component(toolchain "${CMAKE_TOOLCHAIN_FILE}" NAME_WE)

@@ -3,6 +3,7 @@ project(pioasm CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
+message("GPIB: Building PIOASM")
 if (PIOASM_GENERATE_PARSER)
     find_package(BISON 3.4.2)
     find_package(FLEX 2.5.13) # no idea about the version

@@ -9,6 +9,7 @@ foreach(LANG IN ITEMS C CXX ASM)
     endif()
     set(CMAKE_${LANG}_LINK_FLAGS "-Wl,--build-id=none")
 
+    message("CMAKE_${LANG}_LINK_FLAGS: ${CMAKE_${LANG}_LINK_FLAGS}")
     # try_compile is where the feature testing is done, and at that point,
     # pico_standard_link is not ready to be linked in to provide essential
     # functions like _exit. So pass -nostdlib so it doesn't link in an exit()

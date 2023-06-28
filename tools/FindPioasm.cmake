@@ -9,7 +9,9 @@
 #     Pioasm
 #
 
+message("Checking for PIOASM")
 if (NOT Pioasm_FOUND)
+  message("NOT FOUND")
     # todo we would like to use pckgconfig to look for it first
     # see https://pabloariasal.github.io/2018/02/19/its-time-to-do-cmake-right/
 
